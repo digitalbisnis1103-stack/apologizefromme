@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>apologizefromme</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  color:#514466;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(255,255,255,.98),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(232,220,255,.9),transparent 30%),
+    linear-gradient(180deg,#fdfbff 0%,#f5efff 52%,#eee5fa 100%);
+  overflow:hidden;
+  position:relative;
+}
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:rgba(255,255,255,.65);
+  filter:blur(35px);
+  pointer-events:none;
+  z-index:0;
+  animation:softGlow 8s ease-in-out infinite alternate;
+}
+
+body::before{top:-120px;left:-100px;}
+
+body::after{
+  right:-120px;
+  bottom:-100px;
+  animation-delay:-4s;
+}
+
+@keyframes softGlow{
+  from{transform:translate(0,0) scale(1);}
+  to{transform:translate(35px,25px) scale(1.15);}
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loadingScreen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.98),transparent 30%),
+    radial-gradient(circle at 80% 30%,rgba(235,224,255,.95),transparent 34%),
+    linear-gradient(180deg,#fdfbff 0%,#f5efff 55%,#eee5fa 100%);
+  opacity:1;
+  visibility:visible;
+  transition:opacity .8s ease,visibility .8s ease;
+  overflow:hidden;
+}
+
+#loadingScreen.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.loader-card{
+  width:min(90vw,360px);
+  text-align:center;
+  padding:32px 24px;
+  border-radius:32px;
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(255,255,255,.95);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:
+    0 25px 70px rgba(102,82,140,.12),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  animation:loaderCardIn .8s ease both;
+}
+
+.loader-image-wrap{
+  position:relative;
+  width:145px;
+  height:145px;
+  margin:0 auto 20px;
+}
+
+.loader-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  padding:7px;
+  background:#fff;
+  border:1px solid #e6dcf2;
+  box-shadow:
+    0 15px 35px rgba(102,82,140,.12),
+    0 0 0 8px rgba(255,255,255,.55);
+  animation:loaderImageFloat 3s ease-in-out infinite;
+}
+
+.loader-heart{
+  position:absolute;
+  right:-2px;
+  bottom:4px;
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#fff;
+  color:#b9a1dc;
+  border:1px solid #e2d6f0;
+  font-size:27px;
+  box-shadow:0 7px 18px rgba(102,82,140,.12);
+  animation:loaderHeart 1.8s ease-in-out infinite;
+}
+
+.loader-title{
+  font-family:'Dancing Script',cursive;
+  font-size:2rem;
+  color:#665080;
+  margin-bottom:20px;
+}
+
+.loader-line{
+  width:100%;
+  height:5px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e8def5;
+}
+
+.loader-line span{
+  display:block;
+  width:35%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#cbb4e8,#fff,#cbb4e8);
+  animation:loaderProgress 1.6s ease-in-out infinite;
+}
+
+.loader-dots{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  margin-top:16px;
+}
+
+.loader-dots i{
+  display:block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#c4addf;
+  animation:loaderDot 1.2s ease-in-out infinite;
+}
+
+.loader-dots i:nth-child(2){animation-delay:.15s;}
+.loader-dots i:nth-child(3){animation-delay:.3s;}
+
+@keyframes loaderCardIn{
+  from{opacity:0;transform:translateY(18px) scale(.96);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+@keyframes loaderImageFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg);}
+  50%{transform:translateY(-8px) rotate(1deg);}
+}
+
+@keyframes loaderHeart{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.14);}
+}
+
+@keyframes loaderProgress{
+  0%{transform:translateX(-130%);}
+  50%{transform:translateX(80%);}
+  100%{transform:translateX(300%);}
+}
+
+@keyframes loaderDot{
+  0%,100%{transform:translateY(0);opacity:.35;}
+  50%{transform:translateY(-5px);opacity:1;}
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.page{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100dvh;
+  padding:25px;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  z-index:10;
+  opacity:0;
+  transform:translateY(25px) scale(.98);
+  transition:opacity .5s ease,transform .5s ease;
+  overflow:hidden;
+}
+
+.page.active{
+  display:flex;
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+.title{
+  font-family:'Dancing Script',cursive;
+  font-size:3rem;
+  color:#665080;
+  margin-bottom:15px;
+  text-shadow:0 3px 15px rgba(255,255,255,.9);
+}
+
+.text{
+  max-width:350px;
+  line-height:1.8;
+  font-size:1rem;
+  color:#6f6182;
+}
+
+.img-box{
+  flex-shrink:0;
+}
+
+.img-box img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:50%;
+  padding:7px;
+  background:rgba(255,255,255,.95);
+  border:1px solid #e6dcf2;
+  box-shadow:
+    0 15px 35px rgba(102,82,140,.13),
+    0 0 0 8px rgba(255,255,255,.55);
+  margin-bottom:20px;
+  animation:floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage{
+  0%,100%{transform:translateY(0) rotate(-1deg);}
+  50%{transform:translateY(-9px) rotate(1deg);}
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn-group{
+  display:flex;
+  gap:15px;
+  margin-top:25px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+button{
+  border:none;
+  padding:14px 35px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff,#f0e8fb);
+  color:#665080;
+  border:1px solid #e2d6f0;
+  font-family:'Poppins',sans-serif;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:
+    0 10px 25px rgba(102,82,140,.12),
+    inset 0 1px 0 #fff;
+}
+
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(102,82,140,.17);
+  background:#fff;
+}
+
+button:active{transform:scale(.95);}
+
+.secondary-btn{
+  background:rgba(255,255,255,.6);
+  color:#9a88b1;
+  border:1px solid #e2d6f0;
+  box-shadow:none;
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+  width:95%;
+  max-width:380px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.95);
+  padding:25px;
+  border-radius:28px;
+  text-align:left;
+  line-height:1.9;
+  color:#6f6182;
+  box-shadow:
+    0 20px 50px rgba(102,82,140,.12),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  position:relative;
+}
+
+.letter::before{
+  content:"♡";
+  position:absolute;
+  top:8px;
+  right:16px;
+  font-size:25px;
+  color:#d9c9ec;
+  animation:pulseHeart 2s ease-in-out infinite;
+}
+
+@keyframes pulseHeart{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.18);}
+}
+
+.letter-title{
+  font-family:'Dancing Script',cursive;
+  font-size:2rem;
+  color:#8b6bb1;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.letter-text{
+  white-space:pre-line;
+}
+
+#page3,
+#page5{
+  justify-content:flex-start;
+  align-items:center;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:30px 20px;
+  -webkit-overflow-scrolling:touch;
+}
+
+#page3 .letter,
+#page5 .letter{
+  width:95%;
+  max-width:380px;
+  margin:30px 0;
+  flex-shrink:0;
+}
+
+#page4{
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  padding:30px 20px;
+}
+
+#page6 .title{
+  margin-bottom:20px;
+}
+
+/* =========================
+   FLOATING LOVE
+========================= */
+
+.floating{
+  position:fixed;
+  bottom:-60px;
+  pointer-events:none;
+  z-index:2;
+  animation:floatUp linear infinite;
+  user-select:none;
+}
+
+.love{
+  color:#fff;
+  -webkit-text-stroke:1px #cdb8e7;
+  text-shadow:0 3px 10px rgba(110,90,140,.12);
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translate3d(0,0,0) rotate(0deg);
+    opacity:0;
+  }
+  10%{opacity:.85;}
+  50%{
+    transform:translate3d(20px,-55vh,0) rotate(12deg);
+    opacity:.9;
+  }
+  100%{
+    transform:translate3d(-25px,-120vh,0) rotate(-12deg);
+    opacity:0;
+  }
+}
+
+.bubble{
+  width:var(--size);
+  height:var(--size);
+  border-radius:50%;
+  border:1px solid rgba(190,170,220,.55);
+  background:
+    radial-gradient(circle at 30% 25%,rgba(255,255,255,.95) 0 8%,transparent 9%),
+    rgba(255,255,255,.25);
+  box-shadow:
+    inset 3px 3px 8px rgba(255,255,255,.9),
+    0 4px 15px rgba(100,82,140,.08);
+}
+
+.flower{
+  color:#fff;
+  filter:drop-shadow(0 3px 7px rgba(100,82,140,.13));
+  text-shadow:
+    -1px 0 #cdbde0,
+    0 1px #cdbde0,
+    1px 0 #cdbde0,
+    0 -1px #cdbde0;
+}
+
+.flower.small{font-size:20px;}
+.flower.medium{font-size:28px;}
+.flower.large{font-size:36px;}
+
+@keyframes flowerDrift{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:0;}
+  10%{opacity:.85;}
+  50%{transform:translate3d(35px,-55vh,0) rotate(180deg);opacity:.9;}
+  100%{transform:translate3d(-30px,-120vh,0) rotate(360deg);opacity:0;}
+}
+
+.sparkle{
+  position:fixed;
+  color:#fff;
+  text-shadow:0 0 7px #cbb4e8;
+  pointer-events:none;
+  z-index:3;
+  animation:sparkleFloat 3s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat{
+  0%,100%{opacity:.2;transform:scale(.7);}
+  50%{opacity:.9;transform:scale(1.25);}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+body{
+  min-height:100svh;
+  overscroll-behavior:none;
+}
+
+.page{
+  min-height:100svh;
+  height:100svh;
+  padding:
+    max(18px,env(safe-area-inset-top))
+    max(16px,env(safe-area-inset-right))
+    max(18px,env(safe-area-inset-bottom))
+    max(16px,env(safe-area-inset-left));
+}
+
+.page.active{
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+button{
+  min-height:48px;
+  min-width:130px;
+  touch-action:manipulation;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.btn-group{
+  width:100%;
+  max-width:390px;
+}
+
+.letter{
+  max-height:calc(100svh - 40px);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  overscroll-behavior:contain;
+}
+
+#page3,
+#page5{
+  height:100svh;
+  max-height:100svh;
+}
+
+#page3 .letter,
+#page5 .letter{
+  max-height:none;
+  overflow:visible;
+}
+
+.floating,
+.sparkle{
+  pointer-events:none !important;
+}
+
+@media(max-width:480px){
+  .page{padding:20px 16px;}
+
+  .title{font-size:2.6rem;}
+  .text{font-size:.95rem;}
+
+  .img-box img{
+    width:150px;
+    height:150px;
+  }
+
+  button{
+    font-size:16px;
+    padding:12px 30px;
+  }
+
+  .letter{
+    padding:22px;
+    border-radius:24px;
+  }
+
+  .letter-title{
+    font-size:1.8rem;
+  }
+}
+
+@media(max-width:380px){
+  .loader-card{padding:26px 20px;}
+
+  .loader-image-wrap{
+    width:120px;
+    height:120px;
+  }
+
+  .loader-title{font-size:1.75rem;}
+
+  .page{padding:16px 12px;}
+
+  .title{
+    font-size:2.15rem;
+    line-height:1.08;
+  }
+
+  .text{
+    font-size:.88rem;
+    line-height:1.65;
+  }
+
+  .img-box img{
+    width:125px;
+    height:125px;
+    margin-bottom:14px;
+  }
+
+  .letter{
+    padding:18px;
+    font-size:.88rem;
+    line-height:1.75;
+  }
+
+  .letter-title{
+    font-size:1.7rem;
+  }
+
+  .btn-group{
+    gap:10px;
+    margin-top:18px;
+  }
+
+  button{
+    width:100%;
+    max-width:300px;
+    font-size:15px;
+    padding:11px 20px;
+  }
+}
+
+@media(max-height:520px) and (orientation:landscape){
+  .page{
+    justify-content:flex-start;
+    overflow-y:auto;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+
+  .img-box img{
+    width:105px;
+    height:105px;
+    margin-bottom:10px;
+  }
+
+  .title{
+    font-size:2rem;
+    margin-bottom:8px;
+  }
+
+  .text{line-height:1.5;}
+  .btn-group{margin-top:12px;}
+}
+
+@media(hover:none){
+  button:hover{
+    transform:none;
+    box-shadow:
+      0 10px 25px rgba(102,82,140,.12),
+      inset 0 1px 0 #fff;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+/* =========================
+   MODERN LAVENDER DESIGN
+========================= */
+
+body {
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255, 255, 255, 0.95),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(218, 198, 248, 0.75),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #fbf8ff 0%,
+      #f2eaff 48%,
+      #e8daf8 100%
+    );
+}
+
+.page {
+  gap: 18px;
+  padding: 28px 20px;
+}
+
+.title {
+  max-width: 390px;
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  margin-bottom: 2px;
+}
+
+.text {
+  max-width: 390px;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: #655778;
+}
+
+.img-box {
+  margin-bottom: 2px;
+}
+
+.img-box img {
+  width: 166px;
+  height: 166px;
+  padding: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 18px 42px rgba(101, 77, 139, 0.14),
+    0 0 0 10px rgba(255, 255, 255, 0.28);
+}
+
+.btn-group {
+  gap: 12px;
+  margin-top: 8px;
+}
+
+button {
+  min-height: 48px;
+  padding: 13px 26px;
+  border: 1px solid rgba(190, 166, 221, 0.55);
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #f1e8fc
+  );
+  color: #654b83;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  box-shadow:
+    0 8px 22px rgba(101, 77, 139, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  background: #ffffff;
+  box-shadow:
+    0 12px 28px rgba(101, 77, 139, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.42);
+  color: #917ca9;
+  box-shadow: none;
+}
+
+.letter {
+  width: min(100%, 410px);
+  max-width: 410px;
+  padding: 28px 25px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 22px 55px rgba(101, 77, 139, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.letter-title {
+  font-size: 1.9rem;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.letter-text,
+.letter .text {
+  font-size: 0.94rem;
+  line-height: 1.85;
+  color: #665875;
+}
+
+#page3,
+#page5 {
+  padding: 24px 16px;
+}
+
+#page3 .letter,
+#page5 .letter {
+  margin: 12px 0;
+}
+
+#page4 .letter {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#page6 .text {
+  max-width: 400px;
+}
+
+#page6 .text strong {
+  display: inline-block;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.loader-card {
+  width: min(92vw, 370px);
+  padding: 30px 25px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.loader-image-wrap {
+  width: 135px;
+  height: 135px;
+  margin-bottom: 18px;
+}
+
+.loader-title {
+  font-size: 1.9rem;
+  margin-bottom: 18px;
+}
+
+.tap-btn {
+  width: 100%;
+  max-width: 230px;
+  margin-top: 20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .page {
+    gap: 14px;
+    padding: 22px 16px;
+  }
+
+  .title {
+    font-size: 2.45rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .img-box img {
+    width: 142px;
+    height: 142px;
+  }
+
+  .btn-group {
+    margin-top: 7px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 12px 22px;
+  }
+
+  .letter {
+    padding: 24px 20px;
+  }
+
+  .letter-title {
+    font-size: 1.75rem;
+  }
+
+  .letter-text,
+  .letter .text {
+    font-size: 0.9rem;
+    line-height: 1.78;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    gap: 11px;
+    padding: 18px 13px;
+  }
+
+  .title {
+    font-size: 2.15rem;
+  }
+
+  .text {
+    font-size: 0.84rem;
+  }
+
+  .img-box img {
+    width: 122px;
+    height: 122px;
+  }
+
+  .letter {
+    padding: 21px 17px;
+  }
+
+  .letter-title {
+    font-size: 1.6rem;
+  }
+
+  .letter-text,
+  .letter .text {
+    font-size: 0.84rem;
+  }
+}
+
+/* =========================
+   PAGE 6 - TAMPILAN SAJA
+========================= */
+
+#page6 {
+  position: relative;
+  gap: 16px;
+  padding: 24px 18px;
+  overflow: hidden;
+}
+
+#page6::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(213, 190, 244, 0.28);
+  filter: blur(45px);
+  z-index: -1;
+}
+
+#page6 .img-box {
+  position: relative;
+  margin-bottom: 2px;
+}
+
+#page6 .img-box::after {
+  content: "🤍";
+  position: absolute;
+  right: -10px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e4d6f3;
+  font-size: 22px;
+  box-shadow: 0 8px 20px rgba(102, 80, 128, 0.13);
+  animation: finalHeart 2s ease-in-out infinite;
+}
+
+#page6 .img-box img {
+  width: 155px;
+  height: 155px;
+  padding: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 18px 40px rgba(102, 80, 128, 0.15),
+    0 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#page6 .title {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  line-height: 1.1;
+  color: #665080;
+  text-shadow: 0 4px 18px rgba(255, 255, 255, 0.95);
+}
+
+#page6 .text {
+  width: min(100%, 390px);
+  margin: 0;
+  padding: 22px 23px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 18px 45px rgba(102, 80, 128, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  line-height: 1.8;
+}
+
+#page6 .text strong {
+  display: inline-block;
+  margin-top: 3px;
+  color: #8b6bb1 !important;
+  font-weight: 600;
+}
+
+#page6 > button {
+  margin-top: 2px !important;
+  min-width: 150px;
+  padding: 12px 26px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #80639f;
+  border: 1px solid #d9c7ed;
+  box-shadow: 0 9px 24px rgba(102, 80, 128, 0.12);
+}
+
+#page6 > button::before {
+  content: "✦ ";
+  color: #c2a5df;
+}
+
+#page6 > button::after {
+  content: " ✦";
+  color: #c2a5df;
+}
+
+@keyframes finalHeart {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@media (max-width: 480px) {
+  #page6 {
+    gap: 12px;
+    padding: 22px 16px;
+  }
+
+  #page6 .img-box img {
+    width: 135px;
+    height: 135px;
+  }
+
+  #page6 .img-box::after {
+    width: 37px;
+    height: 37px;
+    font-size: 19px;
+    right: -7px;
+  }
+
+  #page6 .title {
+    font-size: 2.65rem;
+  }
+
+  #page6 .text {
+    padding: 18px 19px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  #page6 > button {
+    min-height: 45px;
+    font-size: 14px;
+  }
+}
+
+.page .text,
+.card-text,
+#page6 .text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#page6 {
+  position: relative;
+  gap: 16px;
+  padding: 24px 18px 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 100%;
+  max-height: 100vh;
+  box-sizing: border-box;
+  justify-content: flex-start;
+}
+
+#page6 .text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOADING SCREEN
+========================= -->
+
+<div id="loadingScreen">
+  <div class="loader-card">
+
+    <div class="loader-image-wrap">
+      <img src="icon4.gif" alt="Loading" class="loader-image">
+      <span class="loader-heart">♡</span>
+    </div>
+
+    <h1 class="loader-title">For you, dear 🤍</h1>
+
+    <div class="loader-line">
+      <span></span>
+    </div>
+
+    <div class="loader-dots">
+      <i></i><i></i><i></i>
+    </div>
+
+    <button id="tapBtn" class="tap-btn" type="button">
+      TAP 🤍
+    </button>
+
+  </div>
+</div>
+
+<!-- MUSIK -->
+<audio id="bgm" autoplay loop muted>
+  <source src="sorry.mp3" type="audio/mpeg">
+</audio>
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<div class="page active" id="page1">
+
+  <div class="img-box">
+    <img src="icon3.gif" alt="Icon">
+  </div>
+
+  <h1 class="title">
+    To My Lovely🤍
+  </h1>
+
+  <p class="text">
+
+    akuu mauu minta maaff sedikittt yaa derrr...
+
+    <br><br>
+
+    setelah akuu pikir pikir lagi, akuu baru sadar
+    kalau tadiitu akuu kurang peka sama keadaan kamuu
+
+  </p>
+
+  <div class="btn-group">
+
+    <button onclick="showPage('page2')">
+      I want to read
+    </button>
+
+    <button id="skipBtn" class="secondary-btn">
+      Skip
+    </button>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<div class="page" id="page2">
+
+  <div class="img-box">
+    <img src="icon4.jpg" alt="Icon">
+  </div>
+
+  <h1 class="title">
+    Ada yang ku sadari...
+  </h1>
+
+  <p class="text">
+
+    akuu tauu kamuu baru pulang PKL, pasti capee,
+    penatt, dan cuma pengen istirahatt
+
+    <br><br>
+
+    tapii tadii itu akuu malah fokus sama apa
+    yang akuu pengen, tanpa mikirin kalau kamuu
+    mungkin lagi butuh waktu buat diri sendiri.
+
+  </p>
+
+  <button onclick="showPage('page3')" style="margin-top:25px;">
+    Continue🤍
+  </button>
+
+</div>
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<div class="page" id="page3">
+
+  <div class="letter">
+
+    <h2 class="letter-title">
+      To : My Sweetie🤍
+    </h2>
+
+    <div class="letter-text">yang paling akuu sesali bukan karena kamuu
+nolak atau jawab singkat
+
+tapi karena akuu sadar akuu terus"an ngebujuk
+saat kamuu mungkin lagi lelahh...
+
+harusnya akuu lebih mengerti kondisi kamuu dulu,
+bukan terus meminta sesuatu dari kamuu...</div>
+
+    <center style="margin-top:25px;">
+
+      <button onclick="showPage('page4')">
+        lanjutt yaa
+      </button>
+
+    </center>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PAGE 4
+========================= -->
+
+<div class="page" id="page4">
+
+  <div class="letter">
+
+    <h2 class="letter-title">
+      Aku belajar sesuatu...
+    </h2>
+
+    <p class="text">
+
+      akuu belajar kalau sayangg seseorang
+      bukan cuma tentang ngungkapin apa yang
+      akuu rasain
+
+      <br><br>
+
+      tapi juga tentang ngerti kapan harus bicara,
+      kapan harus menunggu, dan kapan harus
+      kasih ruang buat orang yang akuu sayang.
+
+    </p>
+
+    <center>
+
+      <button onclick="showPage('page5')" style="margin-top:25px;">
+        sebentar lagii yaaa🫶🏻
+      </button>
+
+    </center>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PAGE 5
+========================= -->
+
+<div class="page" id="page5">
+
+  <div class="letter">
+
+    <h2 class="letter-title">
+      For youu🫶🏻
+    </h2>
+
+    <div class="letter-text">jadi kalau nanti kamuu lagi capee,
+lagi banyak pikiran, atau lagi pengen sendiri...
+
+akuu bakal coba lebih peka dan lebih menghargai
+perasaan kamuu, derrr 🤍
+
+karenaa kesehatan dan ketenangan kamuu
+jauh lebih penting daripada keinginan akuu sesaat</div>
+
+    <center style="margin-top:25px;">
+
+      <button onclick="showPage('page6')">
+        janji ini terakhir hehe...😙
+      </button>
+
+    </center>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PAGE 6
+========================= -->
+
+<div class="page" id="page6">
+
+  <div class="img-box">
+    <img src="icon1.gif" alt="Icon">
+  </div>
+
+  <h1 class="title">
+    Thankyouu My Dearrr🤍
+  </h1>
+
+  <p class="text">
+
+    Karena tanpa sadar kamuu ngajarin akuu
+    banyak hal.
+
+    <br><br>
+
+    akuu masih belajar jadi orang yang lebih baik,
+    lebih peka, dan lebih ngerti kamuu.
+
+    <br><br>
+
+    and i promise, i'll try to love you in a way
+    that makes you feel comfortable, not pressured 🤍🫂
+
+    <br><br>
+
+    <strong style="color:#8b6bb1;">
+      i'm sooo proud of youu, derrr✨🫶🏻🤍
+    </strong>
+
+  </p>
+
+  <button onclick="showPage('page1')" style="margin-top:25px;">
+    replay
+  </button>
+
+</div>
+
+<!-- ANIMASI LOVE, GELEMBUNG & BUNGA -->
+<div id="decorations" aria-hidden="true"></div>
+
+<script>
+/* =========================
+   LOADING SCREEN
+========================= */
+
+window.addEventListener("load",function(){
+
+  const loadingScreen=document.getElementById("loadingScreen");
+  const tapBtn=document.getElementById("tapBtn");
+
+  function enterWebsite(){
+
+    if(!loadingScreen ||
+       loadingScreen.classList.contains("hide")) return;
+
+    tapBtn.disabled=true;
+    tapBtn.innerHTML="Opening... 🤍";
+
+    loadingScreen.classList.add("hide");
+
+    const music=document.getElementById("bgm");
+
+    if(music){
+      music.muted=false;
+      music.play().catch(()=>{});
+    }
+
+    setTimeout(function(){
+      loadingScreen.remove();
+    },850);
+
+  }
+
+  tapBtn.addEventListener("click",enterWebsite);
+
+});
+
+/* =========================
+   GANTI HALAMAN
+========================= */
+
+function showPage(id){
+
+  document.querySelectorAll('.page').forEach(page=>{
+    page.classList.remove('active');
+  });
+
+  const target=document.getElementById(id);
+
+  if(target){
+
+    target.classList.add('active');
+    target.scrollTop=0;
+
+    const letter=target.querySelector('.letter');
+
+    if(letter){
+      letter.scrollTop=0;
+    }
+
+  }
+
+}
+
+/* =========================
+   TOMBOL SKIP KABUR
+========================= */
+
+const skipBtn=document.getElementById("skipBtn");
+
+function moveSkip(){
+
+  const x=(Math.random()*180)-90;
+  const y=(Math.random()*120)-60;
+
+  skipBtn.style.transform=
+    `translate(${x}px,${y}px)`;
+
+}
+
+skipBtn.addEventListener("pointerenter",moveSkip);
+
+skipBtn.addEventListener("touchstart",function(e){
+
+  e.preventDefault();
+  moveSkip();
+
+});
+
+/* =========================
+   MUSIK
+========================= */
+
+document.body.addEventListener('click',()=>{
+
+  const music=document.getElementById('bgm');
+
+  music.muted=false;
+  music.play();
+
+},{once:true});
+
+/* =========================
+   LOVE + GELEMBUNG + BUNGA
+========================= */
+
+const decorations=document.getElementById("decorations");
+
+function createDecoration(type){
+
+  const el=document.createElement("span");
+
+  el.className=`floating ${type}`;
+
+  const left=Math.random()*100;
+  const duration=9+Math.random()*12;
+  const delay=Math.random()*-12;
+
+  el.style.left=left+"vw";
+  el.style.animationDuration=duration+"s";
+  el.style.animationDelay=delay+"s";
+
+  if(type==="love"){
+
+    const loves=["♡","♥","🤍"];
+
+    el.textContent=
+      loves[Math.floor(Math.random()*loves.length)];
+
+    el.style.fontSize=(17+Math.random()*22)+"px";
+    el.style.animationName="floatUp";
+
+  }
+
+  if(type==="bubble"){
+
+    el.style.setProperty(
+      "--size",
+      (10+Math.random()*28)+"px"
+    );
+
+    el.style.animationName="floatUp";
+
+  }
+
+  if(type==="flower"){
+
+    const flowers=["✿","❀","✾","❁"];
+
+    el.textContent=
+      flowers[Math.floor(Math.random()*flowers.length)];
+
+    el.classList.add(
+      Math.random()<.55 ? "small" :
+      Math.random()<.8 ? "medium" : "large"
+    );
+
+    el.style.animationName="flowerDrift";
+
+  }
+
+  decorations.appendChild(el);
+
+}
+
+for(let i=0;i<22;i++) createDecoration("love");
+for(let i=0;i<18;i++) createDecoration("bubble");
+for(let i=0;i<15;i++) createDecoration("flower");
+
+/* Tiny sparkles */
+
+for(let i=0;i<18;i++){
+
+  const s=document.createElement("span");
+
+  s.className="sparkle";
+  s.textContent="✦";
+
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  s.style.fontSize=(8+Math.random()*12)+"px";
+  s.style.animationDelay=Math.random()*3+"s";
+
+  decorations.appendChild(s);
+
+}
+</script>
+
+</body>
+</html>
